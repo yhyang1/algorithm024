@@ -12,10 +12,15 @@
     通过两个参数初始化：
       * initialCapacity
       * loadFactor。 默认为 0.75
-2. map.set(key, value)
-3. map.get(key)
-   查找key是否存在，返回null或值。通过getNode(hash(key), key)实现。
+2. map.put(key, value)
+   将key和value在map中关联在一起，通过putVal(int hash, K key, V value, ...)实现。
    
+3. map.get(key)
+   查找key是否存在，返回null或值。通过getNode(hash(key), key)实现。其中：
+    * int hash(Object key)通过调用object的hashCode方法计算key的哈希值
+    * Node<K,V> getNode(int hash, Object key)，判定HashMap.table的第一个元素类型是否为TreeNode。
+        * 是则通过getTreeNode(hash,key)寻找
+        * 否则遍历通过first.next开始
 4. map.has(key)
 6. map.clear()
 ### 有效的字母异位词（亚马逊、Facebook、谷歌在半年内面试中考过）
